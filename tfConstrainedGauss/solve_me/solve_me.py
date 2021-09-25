@@ -53,6 +53,22 @@ class ResultsME:
     learned_prec_mat_non_zero : np.array
     learned_cov_mat_non_zero : np.array
 
+    @property
+    def learned_prec_mat(self) -> np.array:
+        return convert_mat_non_zero_to_mat(
+            n=self.inputs.n,
+            non_zero_idx_pairs=self.inputs.non_zero_idx_pairs,
+            mat_non_zero=self.learned_prec_mat_non_zero
+            )
+
+    @property
+    def learned_cov_mat(self) -> np.array:
+        return convert_mat_non_zero_to_mat(
+            n=self.inputs.n,
+            non_zero_idx_pairs=self.inputs.non_zero_idx_pairs,
+            mat_non_zero=self.learned_cov_mat_non_zero
+            )
+
     def report(self):
         print("----- Results -----")
 

@@ -1,6 +1,6 @@
-from helpers_test import assert_equal_arrs, save_load_layer, \
-    random_non_zero_idx_pairs, random_cov_mat, save_load_model
-from tfConstrainedGauss import InputsID, solve_id, LayerMultPrecCov, ModelID
+from helpers_test import assert_equal_arrs, save_load_layer, save_load_model
+from tfConstrainedGauss import InputsID, solve_id, LayerMultPrecCov, \
+    ModelID, random_non_zero_idx_pairs, random_cov_mat
 
 import numpy as np
 import tensorflow as tf

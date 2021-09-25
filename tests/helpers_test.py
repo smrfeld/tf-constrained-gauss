@@ -3,32 +3,6 @@ import numpy as np
 
 from typing import List, Tuple
 
-def random_non_zero_idx_pairs(n: int) -> List[Tuple[int,int]]:
-    # Non zero elements
-    non_zero_idx_pairs = []
-    # All diagonal (required)
-    for i in range(0,n):
-        non_zero_idx_pairs.append((i,i))
-    # Some off diagonal < n choose 2
-    max_no_off_diagonal = int((n-1)*n/2)
-    no_off_diagonal = np.random.randint(low=0,high=max_no_off_diagonal)
-    print("No non-zero off-diagonal elements:",no_off_diagonal,"max possible:",max_no_off_diagonal)
-    idx = 0
-    while idx < no_off_diagonal:
-        i = np.random.randint(low=1,high=n)
-        j = np.random.randint(low=0,high=i)
-        if not (i,j) in non_zero_idx_pairs:
-            non_zero_idx_pairs.append((i,j))
-            idx += 1
-
-    return non_zero_idx_pairs
-
-# Random cov mat using chol decomposition
-# Diagonal = positive => unique
-def random_cov_mat(n: int) -> np.array:
-    chol = np.tril(np.random.rand(n,n))
-    return np.dot(chol,np.transpose(chol))
-
 @tf.keras.utils.register_keras_serializable(package="physDBD")
 class SingleLayerModel(tf.keras.Model):
 
