@@ -1,10 +1,50 @@
-from helpers_test import assert_equal_arrs, save_load_model, random_non_zero_idx_pairs, random_cov_mat
-from tfConstrainedGauss import InputsID, solve_id
+from helpers_test import assert_equal_arrs, save_load_layer, \
+    random_non_zero_idx_pairs, random_cov_mat, save_load_model
+from tfConstrainedGauss import InputsID, solve_id, LayerMultPrecCov, ModelID
 
 import numpy as np
 import tensorflow as tf
 
 class TestID:
+
+    def test_layer_mult(self):
+        
+        n=2
+        lyr = LayerMultPrecCov.constructDiag(
+            n=n,
+            non_zero_idx_pairs=[(0,0),(1,0),(1,1)],
+            init_diag_val=10.0
+            )
+
+        batch_size = 3
+        x_in = np.full(
+            shape=(batch_size,n,n),
+            fill_value=np.array([[0.1,0.0],[0.0,0.1]])
+        )
+
+        x_out = lyr(x_in)
+        assert_equal_arrs(x_out[0], np.eye(n))
+    
+    def test_save(self):
+
+        n=2
+        lyr = LayerMultPrecCov.constructDiag(
+            n=n,
+            non_zero_idx_pairs=[(0,0),(1,0),(1,1)],
+            init_diag_val=10.0
+            )
+
+        batch_size = 3
+        x_in = np.full(
+            shape=(batch_size,n,n),
+            fill_value=np.array([[0.1,0.0],[0.0,0.1]])
+        )
+
+        save_load_layer(lyr,x_in)
+
+        model = ModelID(mult_lyr=lyr)
+
+        save_load_model(model,x_in)
 
     def test_id_n2(self):
 

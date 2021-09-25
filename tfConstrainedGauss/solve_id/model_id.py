@@ -11,7 +11,7 @@ from typing import List, Tuple
 class LayerMultPrecCov(tf.keras.layers.Layer):
 
     @classmethod
-    def construct(cls,
+    def constructDiag(cls,
         n: int,
         non_zero_idx_pairs: List[Tuple[int,int]],
         init_diag_val: float = 1.0,

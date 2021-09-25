@@ -58,10 +58,13 @@ def assert_equal_arrs(x_out, x_out_true):
     tol = 5.e-4
     assert np.max(abs(x_out-x_out_true)) < tol
 
-def save_load_model(lyr, x_in):
+def save_load_layer(lyr, x_in):
+    model = SingleLayerModel(lyr)
+    save_load_model(model, x_in)
+
+def save_load_model(model, x_in):
 
     # Test save; call the model once to build it first
-    model = SingleLayerModel(lyr)
     x_out = model(x_in)
 
     print(model)
@@ -74,3 +77,4 @@ def save_load_model(lyr, x_in):
     # Check types match!
     # Otherwise we may have: tensorflow.python.keras.saving.saved_model.load.XYZ instead of XYZ
     assert type(model_rel) is type(model)
+

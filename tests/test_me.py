@@ -1,5 +1,6 @@
-from helpers_test import assert_equal_arrs, save_load_model, random_non_zero_idx_pairs, random_cov_mat
-from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, convert_mat_to_mat_non_zero
+from helpers_test import assert_equal_arrs, save_load_layer, random_non_zero_idx_pairs, \
+    random_cov_mat, save_load_model
+from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, convert_mat_to_mat_non_zero, ModelME
 
 import numpy as np
 import tensorflow as tf
@@ -9,12 +10,9 @@ class TestME:
     def test_inv_prec_to_cov_mat(self):
 
         n = 2
-        non_zero_idx_pairs = [(0,0),(1,0),(1,1)]
-
-        # Create layer
         lyr = LayerPrecToCovMat.constructDiag(
             n=n,
-            non_zero_idx_pairs=non_zero_idx_pairs,
+            non_zero_idx_pairs=[(0,0),(1,0),(1,1)],
             init_diag_val=10.0
             )
 
@@ -33,7 +31,25 @@ class TestME:
 
         assert_equal_arrs(x_out, x_out_true)
 
-        save_load_model(lyr, x_in)
+    def test_save(self):
+        
+        n = 2
+        lyr = LayerPrecToCovMat.constructDiag(
+            n=n,
+            non_zero_idx_pairs=[(0,0),(1,0),(1,1)],
+            init_diag_val=10.0
+            )
+
+        # Input/Output
+        # NOTE: do not use batch size =1, anything else OK like 2, 1 is peculiar results
+        batch_size = 2
+        x_in = np.random.rand(batch_size,1)
+        
+        save_load_layer(lyr, x_in)
+
+        model = ModelME(inv_lyr=lyr)
+
+        save_load_model(model, x_in)
 
     def test_me_n3(self):
 
