@@ -1,4 +1,6 @@
-from ..helpers import convert_mat_non_zero_to_inv_mat, check_symmetric, convert_mat_non_zero_to_inv_mat_non_zero
+from ..helpers import convert_mat_non_zero_to_inv_mat, check_symmetric, \
+    convert_mat_non_zero_to_inv_mat_non_zero, convert_mat_non_zero_to_mat, \
+        convert_mat_to_mat_non_zero
 from .model_id import ModelID, LayerMultPrecCov
 
 import tensorflow as tf
@@ -16,18 +18,25 @@ class InputsID:
     epochs: int = 100
     learning_rate: float = 0.01
 
-    def convert_mat_non_zero_to_inv_mat_non_zero(self, mat_non_zero: np.array):
+    def convert_mat_non_zero_to_inv_mat_non_zero(self, mat_non_zero: np.array) -> np.array:
         return convert_mat_non_zero_to_inv_mat_non_zero(
             n=self.n,
             non_zero_idx_pairs=self.non_zero_idx_pairs,
             mat_non_zero=mat_non_zero
         )
     
-    def convert_mat_non_zero_to_inv_mat(self, mat_non_zero: np.array):
+    def convert_mat_non_zero_to_inv_mat(self, mat_non_zero: np.array) -> np.array:
         return convert_mat_non_zero_to_inv_mat(
             n=self.n,
             non_zero_idx_pairs=self.non_zero_idx_pairs,
             mat_non_zero=mat_non_zero
+        )
+
+    def convert_mat_to_mat_non_zero(self, mat: np.array) -> np.array:
+        return convert_mat_to_mat_non_zero(
+            n=self.n,
+            non_zero_idx_pairs=self.non_zero_idx_pairs,
+            mat=mat
         )
     
     @property
@@ -59,6 +68,14 @@ class ResultsID:
     learned_prec_mat_non_zero : np.array
     learned_cov_mat : np.array
 
+    @property
+    def learned_prec_mat(self):
+        return convert_mat_non_zero_to_mat(
+            n=self.inputs.n,
+            non_zero_idx_pairs=self.inputs.non_zero_idx_pairs,
+            mat_non_zero=self.learned_prec_mat_non_zero
+            )
+
     def report(self):
         print("----- Results -----")
 
@@ -76,6 +93,9 @@ class ResultsID:
 
         print("--> Target cov mat:")
         print(self.inputs.target_cov_mat)
+
+        print("Matrix product (prec.cov) learned:")
+        print(np.dot(self.learned_prec_mat,self.learned_cov_mat))
 
         print("----- End results -----")
 
@@ -126,7 +146,7 @@ def solve_id(
     # Return
     learned_prec_mat_non_zero = model.mult_lyr.non_zero_vals.numpy()
     learned_cov_mat = inputs.convert_mat_non_zero_to_inv_mat(learned_prec_mat_non_zero)
-    
+
     return ResultsID(
         inputs=inputs,
         trained_model=model,
