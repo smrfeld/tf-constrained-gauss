@@ -100,7 +100,7 @@ This is a maximum entropy (MaxEnt) setup. The elements of the precision matrix $
 The problem can be solved in a number of ways, for example using Boltzmann machine learning, where we minimize:
 %---------------
 \begin{equation}
-P^* = \underset{P}{\text{min}} \, \dkl = \underset{P}{\text{min}} \sum_n p(n) \ln \frac{p(n)}{\pt(n)}
+P^* = \underset{P}{\text{argmin}} \, \dkl = \underset{P}{\text{min}} \sum_n p(n) \ln \frac{p(n)}{\pt(n)}
 \end{equation}
 %---------------
 where $p(n)$ is the (unknown) data distribution that gave rise to the given covariances $c_{ij}$ and $\pt(n)$ is the Gaussian with precision matrix $P$. The gradients that result are the wake sleep phase:
@@ -113,14 +113,14 @@ where $p(n)$ is the (unknown) data distribution that gave rise to the given cova
 In TensorFlow, we minimize the MSE loss for the individual terms, which results in the same first order gradients:
 %---------------
 \begin{equation}
-\underset{P}{\text{min}} \sum_{ij} \Big | \Big | c_{ij} - (P^{-1})_{ij} \Big | \Big |_2
+P^* = \underset{P}{\text{argmin}} \sum_{ij} \Big | \Big | c_{ij} - (P^{-1})_{ij} \Big | \Big |_2
 \end{equation}
 %--------------- 
 
 To learn each element of the covariance matrix with equal importance, we can use a weighted MSE loss:
 %---------------
 \begin{equation}
-\underset{P}{\text{min}} \sum_{ij} w_{ij} \Big | \Big | c_{ij} - (P^{-1})_{ij} \Big | \Big |_2
+P^* = \underset{P}{\text{argmin}} \sum_{ij} w_{ij} \Big | \Big | c_{ij} - (P^{-1})_{ij} \Big | \Big |_2
 \end{equation}
 %---------------
 where
