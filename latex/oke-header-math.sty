@@ -1,0 +1,162 @@
+\NeedsTeXFormat{LaTeX2e}[2017/05/27]
+\ProvidesPackage{oke-header-math}[2017/05/27 oke-header-math]
+
+% Fonts
+%\usepackage{FE-Lucida}
+
+% Underline
+\usepackage[normalem]{ulem}
+
+% Math?
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Graphics
+%\usepackage[pdftex]{graphic}
+\usepackage{graphicx}
+\usepackage{subcaption} % for subfigures
+%\usepackage{pdfsync}
+
+% Something
+\usepackage{float}
+\usepackage{fixltx2e}
+
+% Verbatim
+\usepackage{verbatim}
+
+% Units
+\usepackage{siunitx}
+\sisetup{%
+  output-decimal-marker={.},
+  load-configurations=abbreviations,
+  group-separator={,},
+  %per-mode=fraction
+  per-mode=symbol
+}
+\DeclareSIUnit\eVperc{\eV\per$c$}
+
+% Set the margins
+\usepackage[margin=2.0cm]{geometry}
+
+% Underscore environment
+\makeatletter
+\DeclareRobustCommand*{\escapeus}[1]{%
+  \begingroup\@activeus\scantokens{#1\endinput}\endgroup}
+\begingroup\lccode`\~=`\_\relax
+   \lowercase{\endgroup\def\@activeus{\catcode`\_=\active \let~\_}}
+\makeatother
+
+% Program mode
+\newcommand{\prog}[1]{\texttt{\escapeus{#1}}}
+
+% HyperLinks
+\usepackage{hyperref} % Hyperlinks
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor} % colors
+\hypersetup{colorlinks, breaklinks, urlcolor=Maroon, linkcolor=Maroon, citecolor=Maroon} % Set link colors
+
+%%%%%%%%%%%%
+% MATH DEFINITIONS
+%%%%%%%%%%%%
+\newcommand{\thickhat}[1]{\mathbf{\hat{\text{$#1$}}}}
+\newcommand{\oset}{\varnothing}
+\newcommand{\alb}{{\boldsymbol \alpha}}
+\newcommand{\betab}{{\boldsymbol \beta}}
+\newcommand{\gammab}{{\boldsymbol \gamma}}
+\newcommand{\xb}{{\boldsymbol x}}
+\newcommand{\zb}{{\boldsymbol z}}
+\newcommand{\kp}{{k^\prime}}
+\newcommand{\lambdap}{{\lambda^\prime}}
+\newcommand{\angli}{{\left \langle i \right \rangle}}
+\newcommand{\anglj}{{\left \langle j \right \rangle}}
+\newcommand{\anglink}{{\left \langle i \right \rangle_k^n}} 
+\newcommand{\anglinl}{{\left \langle i \right \rangle_l^n}}
+\newcommand{\angljnk}{{\left \langle j \right \rangle_k^n}}
+\newcommand{\anglikpl}{{\left \langle i \right \rangle_l^\kp}}
+\newcommand{\anglinkp}{{\left \langle i \right \rangle_\kp^n}}
+\newcommand{\angljnkp}{{\left \langle j \right \rangle_\kp^n}}
+\newcommand{\angljmkp}{{\left \langle j \right \rangle_\kp^m}}
+\newcommand{\anglikka}{{\left \langle i \right \rangle_\kappa^k}}
+\newcommand{\anglikpka}{{\left \langle i \right \rangle_\kappa^\kp}}
+\newcommand{\anglikla}{{\left \langle i \right \rangle_\lambda^k}}
+\newcommand{\anglikplap}{{\left \langle i \right \rangle_\lambdap^\kp}}
+\newcommand{\anglhnl}{{\left \langle h \right \rangle_l^n}}
+\newcommand{\anglhnkp}{{\left \langle h \right \rangle_\kp^n}}
+\newcommand{\anglhql}{{\left \langle h \right \rangle_l^q}}
+\newcommand{\anglhqkp}{{\left \langle h \right \rangle_\kp^q}}
+\newcommand{\anglimk}{{\left \langle i \right \rangle_k^m}}
+\newcommand{\angljmk}{{\left \langle j \right \rangle_k^m}}
+\newcommand{\angljY}{{\left \langle j = i \right \rangle_k^n}}
+\newcommand{\angljN}{{\left \langle j \neq i \right \rangle_k^n}}
+\newcommand{\sik}{{\mathcal{S}_k}}
+\newcommand{\sikp}{{\mathcal{S}_\kp}}
+\newcommand{\sil}{{\mathcal{S}_l}}
+\newcommand{\bb}{{\boldsymbol \beta}}
+\newcommand{\yb}{{\boldsymbol y}}
+\newcommand{\Yb}{{\boldsymbol Y}}
+\newcommand{\eb}{{\boldsymbol e}}
+\newcommand{\gab}{{\boldsymbol \gamma}}
+\newcommand{\thetab}{{\boldsymbol \theta}}
+\newcommand{\psib}{{\boldsymbol \psi}}
+\newcommand{\phib}{{\boldsymbol \phi}}
+\newcommand{\dkl}{\mathcal{D}_{\mathcal{K}\mathcal{L}}}
+\newcommand{\tp}{{t^\prime}}
+\newcommand{\tpp}{{t^{\prime\prime}}}
+\newcommand{\pt}{{\tilde{p}}}
+\newcommand{\vnu}{{\boldsymbol \nu}}
+\newcommand{\vmu}{{\boldsymbol \mu}}
+\newcommand{\boldn}{{\boldsymbol n}}
+\newcommand{\bolds}{{\boldsymbol s}}
+\newcommand{\avensto}{\left \langle n_{\mathcal{S}_{2,1}} \right \rangle_p}
+\newcommand{\avenstt}{\left \langle n_{\mathcal{S}_{2,2}} \right \rangle_p}
+\newcommand{\emusto}{e^{-\mu_1(\mathcal{S}_{2,1})}}
+\newcommand{\emustt}{e^{-\mu_1(\mathcal{S}_{2,2})}}
+\newcommand{\avenapt}{\left \langle n_A \right \rangle_{\pt}}
+\newcommand{\avenap}{\left \langle n_A \right \rangle_p}
+\newcommand{\xp}{x^\prime}
+\newcommand{\xpp}{x^{\prime\prime}}
+% Ising model
+\newcommand{\Zb}{{\boldsymbol Z}}
+\newcommand{\sm}{s_-}
+\renewcommand{\sp}{s_+}
+\newcommand{\lone}{\lambda_1}
+\newcommand{\ltwo}{\lambda_2}
+\newcommand{\htilde}{\tilde{h}}
+\newcommand{\jtilde}{\tilde{J}}
+%%%%%%%%%%%%
+%%%%%%%%%%%%
+
+% No separate pages for parts, but still appear in toc
+\renewcommand{\part}[1]{\addcontentsline{toc}{part}{#1}}
+
+% Physics package
+\usepackage{physics}
+
+% For boxed equations
+\usepackage{empheq}
+\newcommand*\widefbox[1]{\fbox{\hspace{1em}#1\hspace{1em}}}
+
+% For bold symbols
+\usepackage{bm}
+\newcommand{\matr}[1]{\mathbf{#1}}
+
+% Section depth
+\setcounter{secnumdepth}{5}
+
+% For defining asides
+\usepackage{mdframed}
+\newenvironment{aside}
+  {\begin{mdframed}[style=0,%
+      leftline=false,rightline=false,leftmargin=2em,rightmargin=2em,%
+          innerleftmargin=0pt,innerrightmargin=0pt,linewidth=0.75pt,%
+      skipabove=7pt,skipbelow=7pt]\small}
+  {\end{mdframed}}
+  
+ % Control list appearance 
+\usepackage{enumitem}
+
+% Ceiling/floor
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\endinput
