@@ -71,13 +71,14 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
         return cls(**config)
 
     def call(self, inputs):
-        
-        prec_mat = tf.zeros_like(inputs["cov_mat"])
+        # Inputs = cov mat
+
+        prec_mat = tf.zeros_like(inputs)
         for i,pair in enumerate(self.non_zero_idx_pairs):
             prec_mat_0 = self.non_zero_vals[i] * unit_mat_sym(self.n,pair[0],pair[1])
             prec_mat += tf.map_fn(lambda val: prec_mat_0, prec_mat)
 
-        return tf.matmul(prec_mat,inputs["cov_mat"])
+        return tf.matmul(prec_mat,inputs)
 
 @tf.keras.utils.register_keras_serializable(package="tfConstrainedGauss")
 class ModelID(tf.keras.Model):

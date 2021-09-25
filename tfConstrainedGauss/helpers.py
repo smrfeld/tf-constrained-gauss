@@ -13,13 +13,21 @@ def convert_mat_non_zero_to_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]]
         mat[pair[1],pair[0]] = mat_non_zero[i]
     return mat
 
-def convert_mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+def convert_mat_non_zero_to_inv_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
     mat = convert_mat_non_zero_to_mat(
         n=n,
         non_zero_idx_pairs=non_zero_idx_pairs,
         mat_non_zero=mat_non_zero
         )
     inv_mat = np.linalg.inv(mat)
+    return inv_mat
+
+def convert_mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+    inv_mat = convert_mat_non_zero_to_inv_mat(
+        n=n,
+        non_zero_idx_pairs=non_zero_idx_pairs,
+        mat_non_zero=mat_non_zero
+        )
     inv_mat_non_zero = convert_mat_to_mat_non_zero(
         n=n,
         non_zero_idx_pairs=non_zero_idx_pairs,
