@@ -1,4 +1,4 @@
-from ..helpers import construct_mat, check_symmetric, construct_mat_non_zero
+from ..helpers import convert_mat_non_zero_to_mat, check_symmetric, convert_mat_to_mat_non_zero
 from .model_id import ModelID, LayerMultPrecCov
 
 import tensorflow as tf
@@ -26,7 +26,7 @@ def invert_ggm(
     
     # Invert 
     prec_mat_init = np.linalg.inv(cov_mat)
-    prec_mat_non_zero_init = construct_mat_non_zero(n,non_zero_idx_pairs,prec_mat_init)
+    prec_mat_non_zero_init = convert_mat_to_mat_non_zero(n,non_zero_idx_pairs,prec_mat_init)
 
     lyr = LayerMultPrecCov(
         n=n,
@@ -80,7 +80,7 @@ def invert_ggm_chol(
         batch_size=batch_size
         )
 
-    prec_mat = construct_mat(n,non_zero_idx_pairs,prec_mat_non_zero)
+    prec_mat = convert_mat_non_zero_to_mat(n,non_zero_idx_pairs,prec_mat_non_zero)
 
     chol = np.linalg.cholesky(prec_mat)
     return (chol, final_loss)

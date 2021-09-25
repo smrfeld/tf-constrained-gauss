@@ -1,4 +1,4 @@
-from ..helpers import construct_mat_non_zero, construct_mat, mat_non_zero_to_inv_mat_non_zero
+from ..helpers import convert_mat_to_mat_non_zero, convert_mat_non_zero_to_mat, convert_mat_non_zero_to_inv_mat_non_zero
 from .model_me import ModelME, LayerPrecToCovMat
 
 import tensorflow as tf
@@ -16,9 +16,32 @@ class InputsME:
     learning_rate: float = 0.01
     use_weighted_loss : bool = False
 
+    def convert_mat_non_zero_to_inv_mat_non_zero(self, mat_non_zero: np.array):
+        return convert_mat_non_zero_to_inv_mat_non_zero(
+            n=self.n,
+            non_zero_idx_pairs=self.non_zero_idx_pairs,
+            mat_non_zero=mat_non_zero
+        )
+    
     @property
     def n_non_zero(self):
         return len(self.non_zero_idx_pairs)
+
+    def report(self):
+        print("----- Inputs -----")
+
+        print("Constraints on the prec mat: non-zero elements are:")
+        print(self.non_zero_idx_pairs)
+
+        print("Constraints on the cov mat: specified values corresponding to above idxs:")
+        print(self.target_cov_mat_non_zero)
+
+        print("Solver options:")
+        print("epochs:", self.epochs)
+        print("learning_rate:", self.learning_rate)
+        print("use_weighted_loss:", self.use_weighted_loss)
+
+        print("----- End inputs -----")
 
 @dataclass
 class ResultsME:
@@ -31,6 +54,8 @@ class ResultsME:
     learned_cov_mat_non_zero : np.array
 
     def report(self):
+        print("----- Results -----")
+
         print("Prec mat initial guess for non-zero elements:")
         print(self.init_prec_mat_non_zero)
 
@@ -46,6 +71,8 @@ class ResultsME:
         print("--> Target cov mat non-zero elements:")
         print(self.inputs.target_cov_mat_non_zero)
 
+        print("----- End results -----")
+
 def custom_weighted_mse(class_weights):
     def weighted_mse(gt, pred):
         # Formula: 
@@ -55,18 +82,13 @@ def custom_weighted_mse(class_weights):
 
 def solve_me(inputs: InputsME) -> ResultsME:
 
-    if inputs.batch_size == 1:
-        raise ValueError("Batch size = 1 leads to peculiar problems; try anything higher, e.g. 2")
-    
-    assert(inputs.batch_size > 0)
-
     assert(inputs.target_cov_mat_non_zero.shape == (len(inputs.non_zero_idx_pairs),))
 
     # Invert cov mat to get initial guess for precision matrix
-    init_prec_mat_non_zero = mat_non_zero_to_inv_mat_non_zero(inputs.target_cov_mat_non_zero)
+    init_prec_mat_non_zero = inputs.convert_mat_non_zero_to_inv_mat_non_zero(inputs.target_cov_mat_non_zero)
     print("Prec mat initial guess for non-zero elements", init_prec_mat_non_zero)
 
-    init_cov_mat_reconstructed_non_zero = mat_non_zero_to_inv_mat_non_zero(init_prec_mat_non_zero)
+    init_cov_mat_reconstructed_non_zero = inputs.convert_mat_non_zero_to_inv_mat_non_zero(init_prec_mat_non_zero)
     print("Initial cov mat corresponding non-zero elements", init_cov_mat_reconstructed_non_zero)
 
     # Make layer and model
@@ -115,7 +137,7 @@ def solve_me(inputs: InputsME) -> ResultsME:
 
     # Return solution & model
     learned_prec_mat_non_zero = model.inv_lyr.non_zero_vals.numpy()
-    learned_cov_mat_non_zero = mat_non_zero_to_inv_mat_non_zero(learned_prec_mat_non_zero)
+    learned_cov_mat_non_zero = inputs.convert_mat_non_zero_to_inv_mat_non_zero(learned_prec_mat_non_zero)
 
     return ResultsME(
         inputs=inputs,

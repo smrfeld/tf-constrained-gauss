@@ -6,28 +6,28 @@ from typing import List, Tuple
 def check_symmetric(a, rtol=1e-05, atol=1e-08):
     return np.allclose(a, a.T, rtol=rtol, atol=atol)
 
-def construct_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+def convert_mat_non_zero_to_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
     mat = np.zeros((n,n))
     for i,pair in enumerate(non_zero_idx_pairs):
         mat[pair[0],pair[1]] = mat_non_zero[i]
         mat[pair[1],pair[0]] = mat_non_zero[i]
     return mat
 
-def mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
-    mat = construct_mat(
+def convert_mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+    mat = convert_mat_non_zero_to_mat(
         n=n,
         non_zero_idx_pairs=non_zero_idx_pairs,
         mat_non_zero=mat_non_zero
         )
     inv_mat = np.linalg.inv(mat)
-    inv_mat_non_zero = construct_mat_non_zero(
+    inv_mat_non_zero = convert_mat_to_mat_non_zero(
         n=n,
         non_zero_idx_pairs=non_zero_idx_pairs,
         mat=inv_mat
         )
     return inv_mat_non_zero
 
-def construct_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat: np.array):
+def convert_mat_to_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat: np.array):
     assert(check_symmetric(mat))
 
     mat_non_zero = np.zeros(len(non_zero_idx_pairs))
