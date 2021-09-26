@@ -6,7 +6,7 @@ This is the source repo. for the `tfConstrainedGauss` Python package. It is a Te
 
 A detailed write up is below in the [about](#about) section, or can also be found in the [PDF in the `latex` folder](latex/constrained_gauss.pdf).
 
-<img src="examples/figures/n8_me_cov.png" alt="drawing" width="600"/>
+<img src="examples/figures/n8_me_cov.png" alt="drawing" width="800"/>
 
 See the [examples directory](examples/) for an explanation of this image.
 
@@ -16,7 +16,7 @@ See the [examples directory](examples/) for an explanation of this image.
     ```
     pip install tfConstrainedGauss
     ```
-    
+
 2. See the [example notebook](example/main.ipynb).
 
 3. Read the [documentation](https://smrfeld.github.io/tf-constrained-gauss).
