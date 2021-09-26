@@ -3,7 +3,7 @@ import numpy as np
 
 from typing import List, Tuple
 
-@tf.keras.utils.register_keras_serializable(package="physDBD")
+@tf.keras.utils.register_keras_serializable(package="tfConstrainedGauss")
 class SingleLayerModel(tf.keras.Model):
 
     def __init__(self, lyr, **kwargs):

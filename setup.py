@@ -9,7 +9,7 @@ setup(
     packages=['tfConstrainedGauss','tfConstrainedGauss/solve_id','tfConstrainedGauss/solve_me'],
     author='Oliver K. Ernst',
     author_email='oliver.k.ernst@gmail.com',
-    # url='https://github.com/smrfeld/phys_dbd',
+    url='https://github.com/smrfeld/tf-constrained-gauss',
     python_requires='>=3.7',
     description="TensorFlow package for estimating constrained precision matrices",
     long_description=long_description,
