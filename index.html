@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Estimating constrained precision matrices using TensorFlow &mdash; tfConstrainedGauss 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tfConstrainedGauss" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="#" class="icon icon-home"> tfConstrainedGauss
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">tfConstrainedGauss</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">tfConstrainedGauss</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>Estimating constrained precision matrices using TensorFlow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="estimating-constrained-precision-matrices-using-tensorflow">
+<h1>Estimating constrained precision matrices using TensorFlow<a class="headerlink" href="#estimating-constrained-precision-matrices-using-tensorflow" title="Permalink to this headline"></a></h1>
+<a class="reference internal image-reference" href="_images/n8_me_cov.png"><img alt="Example" src="_images/n8_me_cov.png" style="width: 800px;" /></a>
+<p>This is the source repo. for the <a class="reference external" href="https://github.com/smrfeld/tf-constrained-gauss">tfConstrainedGauss Python package</a>.</p>
+<p>It is a TensorFlow package for finding the interactions in a Gaussian graphical model with given and fixed structure from constraints on the precision matrix.</p>
+<p>A detailed write up can be found in the <a class="reference external" href="https://github.com/smrfeld/tf-constrained-gauss/blob/main/latex/constrained_gauss.pdf">PDF in the latex folder</a>.</p>
+</section>
+<section id="quickstart">
+<h1>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline"></a></h1>
+<ol class="arabic simple">
+<li><p>Install:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">tfConstrainedGauss</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>See the example notebooks in the example folder of the <a class="reference external" href="https://github.com/smrfeld/tf-constrained-gauss">GitHub repo</a>.</p></li>
+<li><p>Scan the <span class="xref std std-ref">api_ref</span>.</p></li>
+</ol>
+</section>
+<section id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><cite>TensorFlow 2.5.0</cite> or later. <em>Note: later versions not tested.</em></p></li>
+<li><p><cite>Python 3.7.4</cite> or later.</p></li>
+</ul>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<p>Either: use <cite>pip</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">tfConstrainedGauss</span>
+</pre></div>
+</div>
+<p>Or alternatively, clone this <a class="reference external" href="https://github.com/smrfeld/tf-constrained-gauss">repo. from GitHub</a> and use the provided <cite>setup.py</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span>
+</pre></div>
+</div>
+</section>
+<section id="api-documentation">
+<h1>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline"></a></h1>
+<p>See the <span class="xref std std-ref">api_ref</span>.</p>
+</section>
+<section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h1>
+<p>See the notebooks in the examples directory in <a class="reference external" href="https://github.com/smrfeld/tf-constrained-gauss">GitHub repo.</a></p>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+<section id="contents">
+<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">tfConstrainedGauss</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tfConstrainedGauss.html">tfConstrainedGauss package</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="modules.html" class="btn btn-neutral float-right" title="tfConstrainedGauss" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Oliver K. Ernst.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

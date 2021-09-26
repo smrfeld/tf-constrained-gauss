@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>tfConstrainedGauss.solve_me package &mdash; tfConstrainedGauss 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="tfConstrainedGauss.solve_id package" href="tfConstrainedGauss.solve_id.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> tfConstrainedGauss
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">tfConstrainedGauss</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="tfConstrainedGauss.html">tfConstrainedGauss package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="tfConstrainedGauss.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="tfConstrainedGauss.solve_id.html">tfConstrainedGauss.solve_id package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">tfConstrainedGauss.solve_me package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tfConstrainedGauss.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfConstrainedGauss.html#module-tfConstrainedGauss.helpers">tfConstrainedGauss.helpers module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfConstrainedGauss.html#module-tfConstrainedGauss.net_common">tfConstrainedGauss.net_common module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tfConstrainedGauss.html#module-tfConstrainedGauss">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">tfConstrainedGauss</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">tfConstrainedGauss</a> &raquo;</li>
+          <li><a href="tfConstrainedGauss.html">tfConstrainedGauss package</a> &raquo;</li>
+      <li>tfConstrainedGauss.solve_me package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/tfConstrainedGauss.solve_me.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="tfconstrainedgauss-solve-me-package">
+<h1>tfConstrainedGauss.solve_me package<a class="headerlink" href="#tfconstrainedgauss-solve-me-package" title="Permalink to this headline"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline"></a></h2>
+</section>
+<section id="module-tfConstrainedGauss.solve_me.model_me">
+<span id="tfconstrainedgauss-solve-me-model-me-module"></span><h2>tfConstrainedGauss.solve_me.model_me module<a class="headerlink" href="#module-tfConstrainedGauss.solve_me.model_me" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.model_me.</span></span><span class="sig-name descname"><span class="pre">LayerPrecToCovMat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tensorflow.python.keras.engine.base_layer.Layer</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_vals</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.call" title="Permalink to this definition"></a></dt>
+<dd><p>This is where the layer’s logic lives.</p>
+<p>Note here that <cite>call()</cite> method in <cite>tf.keras</cite> is little bit different
+from <cite>keras</cite> API. In <cite>keras</cite> API, you can pass support masking for
+layers as additional arguments. Whereas <cite>tf.keras</cite> has <cite>compute_mask()</cite>
+method to support masking.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>inputs: Input tensor, or list/tuple of input tensors.
+<a href="#id1"><span class="problematic" id="id2">*</span></a>args: Additional positional arguments. Currently unused.
+<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs: Additional keyword arguments. Currently unused.</p>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor or list/tuple of tensors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.constructDiag">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">constructDiag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_diag_val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.constructDiag" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.from_config">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.from_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.get_config" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the config of the layer.</p>
+<p>A layer config is a Python dictionary (serializable)
+containing the configuration of a layer.
+The same layer can be reinstantiated later
+(without its trained weights) from this configuration.</p>
+<p>The config of a layer does not include connectivity
+information, nor the layer class name. These are handled
+by <cite>Network</cite> (one layer of abstraction above).</p>
+<p>Note that <cite>get_config()</cite> does not guarantee to return a fresh copy of dict
+every time it is called. The callers should make a copy of the returned dict
+if they want to modify it.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Python dictionary.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.n_non_zero">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_non_zero</span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.n_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.model_me.</span></span><span class="sig-name descname"><span class="pre">ModelME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tensorflow.python.keras.engine.training.Model</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inv_lyr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat" title="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat"><span class="pre">tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME.call" title="Permalink to this definition"></a></dt>
+<dd><p>Calls the model on new inputs.</p>
+<p>In this case <cite>call</cite> just reapplies
+all ops in the graph to the new inputs
+(e.g. build a new computational graph from the provided inputs).</p>
+<p>Note: This method should not be called directly. It is only meant to be
+overridden when subclassing <cite>tf.keras.Model</cite>.
+To call a model on an input, always use the <cite>__call__</cite> method,
+i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call</cite> method.</p>
+<dl>
+<dt>Args:</dt><dd><p>inputs: A tensor or list of tensors.
+training: Boolean or boolean scalar tensor, indicating whether to run</p>
+<blockquote>
+<div><p>the <cite>Network</cite> in training mode or inference mode.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>mask: A mask or list of masks. A mask can be</dt><dd><p>either a tensor or None (no mask).</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>A tensor if there is a single output, or
+a list of tensors if there are more than one outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME.from_config">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME.from_config" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME.get_config">
+<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME.get_config" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the config of the layer.</p>
+<p>A layer config is a Python dictionary (serializable)
+containing the configuration of a layer.
+The same layer can be reinstantiated later
+(without its trained weights) from this configuration.</p>
+<p>The config of a layer does not include connectivity
+information, nor the layer class name. These are handled
+by <cite>Network</cite> (one layer of abstraction above).</p>
+<p>Note that <cite>get_config()</cite> does not guarantee to return a fresh copy of dict
+every time it is called. The callers should make a copy of the returned dict
+if they want to modify it.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Python dictionary.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-tfConstrainedGauss.solve_me.solve_me">
+<span id="tfconstrainedgauss-solve-me-solve-me-module"></span><h2>tfConstrainedGauss.solve_me.solve_me module<a class="headerlink" href="#module-tfConstrainedGauss.solve_me.solve_me" title="Permalink to this headline"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">InputsME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n:</span> <span class="pre">int,</span> <span class="pre">non_zero_idx_pairs:</span> <span class="pre">List[Tuple[int,</span> <span class="pre">int]],</span> <span class="pre">target_cov_mat_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;,</span> <span class="pre">epochs:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100,</span> <span class="pre">learning_rate:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.01,</span> <span class="pre">use_weighted_loss:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_cov_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_weighted_loss</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.convert_mat_non_zero_to_inv_mat_non_zero">
+<span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_inv_mat_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.convert_mat_non_zero_to_inv_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.epochs">
+<span class="sig-name descname"><span class="pre">epochs</span></span><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><em class="property"> <span class="pre">=</span> <span class="pre">100</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.epochs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.learning_rate">
+<span class="sig-name descname"><span class="pre">learning_rate</span></span><em class="property"><span class="pre">:</span> <span class="pre">float</span></em><em class="property"> <span class="pre">=</span> <span class="pre">0.01</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.learning_rate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.n">
+<span class="sig-name descname"><span class="pre">n</span></span><em class="property"><span class="pre">:</span> <span class="pre">int</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.n" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.n_non_zero">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_non_zero</span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.n_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.non_zero_idx_pairs">
+<span class="sig-name descname"><span class="pre">non_zero_idx_pairs</span></span><em class="property"><span class="pre">:</span> <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.non_zero_idx_pairs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.report">
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.report" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.target_cov_mat_non_zero">
+<span class="sig-name descname"><span class="pre">target_cov_mat_non_zero</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.target_cov_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.use_weighted_loss">
+<span class="sig-name descname"><span class="pre">use_weighted_loss</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.use_weighted_loss" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">ResultsME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">inputs:</span> <span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></em>, <em class="sig-param"><span class="pre">trained_model:</span> <span class="pre">tfConstrainedGauss.solve_me.model_me.ModelME</span></em>, <em class="sig-param"><span class="pre">init_prec_mat_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em>, <em class="sig-param"><span class="pre">init_cov_mat_reconstructed_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em>, <em class="sig-param"><span class="pre">learned_prec_mat_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em>, <em class="sig-param"><span class="pre">learned_cov_mat:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="tfConstrainedGauss.solve_me.solve_me.InputsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">trained_model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.model_me.ModelME" title="tfConstrainedGauss.solve_me.model_me.ModelME"><span class="pre">tfConstrainedGauss.solve_me.model_me.ModelME</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_prec_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_cov_mat_reconstructed_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learned_prec_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learned_cov_mat</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.__init__" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.init_cov_mat_reconstructed_non_zero">
+<span class="sig-name descname"><span class="pre">init_cov_mat_reconstructed_non_zero</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.init_cov_mat_reconstructed_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.init_prec_mat_non_zero">
+<span class="sig-name descname"><span class="pre">init_prec_mat_non_zero</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.init_prec_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.inputs">
+<span class="sig-name descname"><span class="pre">inputs</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="tfConstrainedGauss.solve_me.solve_me.InputsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></a></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.inputs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_cov_mat">
+<span class="sig-name descname"><span class="pre">learned_cov_mat</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_cov_mat" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_cov_mat_non_zero">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">learned_cov_mat_non_zero</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_cov_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_prec_mat">
+<em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">learned_prec_mat</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_prec_mat" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_prec_mat_non_zero">
+<span class="sig-name descname"><span class="pre">learned_prec_mat_non_zero</span></span><em class="property"><span class="pre">:</span> <span class="pre">numpy.array</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.learned_prec_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.report">
+<span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.report" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.trained_model">
+<span class="sig-name descname"><span class="pre">trained_model</span></span><em class="property"><span class="pre">:</span> <a class="reference internal" href="#tfConstrainedGauss.solve_me.model_me.ModelME" title="tfConstrainedGauss.solve_me.model_me.ModelME"><span class="pre">tfConstrainedGauss.solve_me.model_me.ModelME</span></a></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.trained_model" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.custom_weighted_mse">
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">custom_weighted_mse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">class_weights</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.custom_weighted_mse" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.solve_me">
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">solve_me</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="tfConstrainedGauss.solve_me.solve_me.InputsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME" title="tfConstrainedGauss.solve_me.solve_me.ResultsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.ResultsME</span></a></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.solve_me" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-tfConstrainedGauss.solve_me">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tfConstrainedGauss.solve_me" title="Permalink to this headline"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tfConstrainedGauss.solve_id.html" class="btn btn-neutral float-left" title="tfConstrainedGauss.solve_id package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Oliver K. Ernst.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
