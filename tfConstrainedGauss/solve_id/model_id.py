@@ -9,6 +9,8 @@ from typing import List, Tuple
 
 @tf.keras.utils.register_keras_serializable(package="tfConstrainedGauss")
 class LayerMultPrecCov(tf.keras.layers.Layer):
+    """Layer that multiplies precision by covarinace matrix
+    """
 
     @classmethod
     def constructDiag(cls,
@@ -17,6 +19,16 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
         init_diag_val: float = 1.0,
         **kwargs
         ):
+        """Constructor for a diagonal precision matrix with elements specified
+
+        Args:
+            n (int): Size of matrix
+            non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+            init_diag_val (float, optional): Value of the diagonal part of precision matrix. Defaults to 1.0.
+
+        Returns:
+            LayerMultPrecCov: layer
+        """
         check_non_zero_idx_pairs(n, non_zero_idx_pairs)
 
         # Set all diagonal elements to one, rest zero (like a identity matrix)
@@ -38,6 +50,13 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
         non_zero_vals: np.array,
         **kwargs
         ):
+        """Constructor
+
+        Args:
+            n (int): Size of matrix
+            non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+            non_zero_vals (np.array): Non-zero values in the precision matrix corresponding to non_zero_idx_pairs
+        """
         super(LayerMultPrecCov, self).__init__(**kwargs)
 
         check_non_zero_idx_pairs(n, non_zero_idx_pairs)
@@ -54,10 +73,17 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
             )
 
     @property
-    def n_non_zero(self):
+    def n_non_zero(self) -> int:
+        """Number of non-zero elements, not counting twice for symmetry!
+
+        Returns:
+            int: number of non-zero elements, not counting twice for symmetry!
+        """
         return len(self.non_zero_idx_pairs)
 
     def get_config(self):
+        """Get config for writing
+        """
         config = super(LayerMultPrecCov, self).get_config()
         config.update({
             "n": self.n,
@@ -68,9 +94,19 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
 
     @classmethod
     def from_config(cls, config):
+        """Construct from config
+        """
         return cls(**config)
 
     def call(self, inputs):
+        """Call the layer
+
+        Args:
+            inputs ([type]): Covariance matrix
+
+        Returns:
+            [type]: Product of precision and covariance matrix
+        """
         # Inputs = cov mat
 
         prec_mat = tf.zeros_like(inputs)

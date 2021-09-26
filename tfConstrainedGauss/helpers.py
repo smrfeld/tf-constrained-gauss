@@ -4,6 +4,15 @@ from dataclasses import astuple
 from typing import List, Tuple
 
 def random_non_zero_idx_pairs(n: int) -> List[Tuple[int,int]]:
+    """Generate a random list of non-zero index pairs. The number of index pairs is less than n choose 2 (max).
+    The indices are lower triangular.
+
+    Args:
+        n (int): Size of the matrix
+
+    Returns:
+        List[Tuple[int,int]]: List of index pairs in the lower triangular matrix.
+    """
     # Non zero elements
     non_zero_idx_pairs = []
     # All diagonal (required)
@@ -26,20 +35,58 @@ def random_non_zero_idx_pairs(n: int) -> List[Tuple[int,int]]:
 # Random cov mat using chol decomposition
 # Diagonal = positive => unique
 def random_cov_mat(n: int) -> np.array:
+    """Generate a random covariance matrix using Cholesky decomposition
+
+    Args:
+        n (int): Size of matrix
+
+    Returns:
+        np.array: Covariance matrix = L.L^T where L is a lower triangular matrix
+    """
     chol = np.tril(np.random.rand(n,n))
     return np.dot(chol,np.transpose(chol))
 
-def check_symmetric(a, rtol=1e-05, atol=1e-08):
+def check_symmetric(a, rtol=1e-05, atol=1e-08) -> bool:
+    """Check a matrix is symmetric
+
+    Args:
+        a ([type]): Matrix
+        rtol ([type], optional): Tol. Defaults to 1e-05.
+        atol ([type], optional): Tol. Defaults to 1e-08.
+
+    Returns:
+        bool: True if symmetric
+    """
     return np.allclose(a, a.T, rtol=rtol, atol=atol)
 
-def convert_mat_non_zero_to_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+def convert_mat_non_zero_to_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array) -> np.array:
+    """Convert list of matrice's non-zero elements into the matrix
+
+    Args:
+        n (int): Size of matrix
+        non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+        mat_non_zero (np.array): Corresponding non-zero matrix elements
+
+    Returns:
+        np.array: nxn matrix with specified non-zero elements
+    """
     mat = np.zeros((n,n))
     for i,pair in enumerate(non_zero_idx_pairs):
         mat[pair[0],pair[1]] = mat_non_zero[i]
         mat[pair[1],pair[0]] = mat_non_zero[i]
     return mat
 
-def convert_mat_non_zero_to_inv_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+def convert_mat_non_zero_to_inv_mat(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array) -> np.array:
+    """Convert list of matrice's non-zero elements into the matrice's inverse 
+
+    Args:
+        n (int): Size of matrix
+        non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+        mat_non_zero (np.array): Corresponding non-zero matrix elements
+
+    Returns:
+        np.array: Inverse of the nxn matrix
+    """
     mat = convert_mat_non_zero_to_mat(
         n=n,
         non_zero_idx_pairs=non_zero_idx_pairs,
@@ -48,7 +95,17 @@ def convert_mat_non_zero_to_inv_mat(n: int, non_zero_idx_pairs: List[Tuple[int,i
     inv_mat = np.linalg.inv(mat)
     return inv_mat
 
-def convert_mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array):
+def convert_mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat_non_zero: np.array) -> np.array:
+    """Convert list of matrice's non-zero elements into the matrice's inverse's list of elements
+
+    Args:
+        n (int): Size of matrix
+        non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+        mat_non_zero (np.array): Corresponding non-zero matrix elements
+
+    Returns:
+        np.array: List of elements corresponding to indices non_zero_idx_pairs in the inverse of the matrix which has non-zero elements given by mat_non_zero
+    """
     inv_mat = convert_mat_non_zero_to_inv_mat(
         n=n,
         non_zero_idx_pairs=non_zero_idx_pairs,
@@ -61,7 +118,17 @@ def convert_mat_non_zero_to_inv_mat_non_zero(n: int, non_zero_idx_pairs: List[Tu
         )
     return inv_mat_non_zero
 
-def convert_mat_to_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat: np.array):
+def convert_mat_to_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]], mat: np.array) -> np.array:
+    """Convert a matrix to it's list of non-zero elements for specified non-zero indices
+
+    Args:
+        n (int): Size of matrix
+        non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+        mat_non_zero (np.array): nxn matrix
+    
+    Returns:
+        np.array: List of elements specified by non_zero_idx_pairs
+    """
     assert(check_symmetric(mat))
 
     mat_non_zero = np.zeros(len(non_zero_idx_pairs))
@@ -70,6 +137,16 @@ def convert_mat_to_mat_non_zero(n: int, non_zero_idx_pairs: List[Tuple[int,int]]
     return mat_non_zero
 
 def check_non_zero_idx_pairs(n: int, non_zero_idx_pairs: List[Tuple[int,int]]):
+    """Check list of non-zero index pairs is valid, i.e. lower triangular and that all diagonal elements are given
+
+    Args:
+        n (int): Size of matrix
+        non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+
+    Raises:
+        ValueError: If not all diagonal elements are specified
+        ValueError: If some indices are not lower-triangular
+    """
     for i in range(0,n):
         if not (i,i) in non_zero_idx_pairs:
             raise ValueError("All diagonal elements must be specified as non-zero.")
