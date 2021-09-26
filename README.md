@@ -16,6 +16,7 @@ See the [examples directory](examples/) for an explanation of this image.
     ```
     pip install tfConstrainedGauss
     ```
+    
 2. See the [example notebook](example/main.ipynb).
 
 3. Read the [documentation](https://smrfeld.github.io/tf-constrained-gauss).
