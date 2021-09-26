@@ -1,4 +1,5 @@
-from ..helpers import convert_mat_to_mat_non_zero, convert_mat_non_zero_to_mat, convert_mat_non_zero_to_inv_mat_non_zero
+from ..helpers import convert_mat_to_mat_non_zero, convert_mat_non_zero_to_mat, \
+    convert_mat_non_zero_to_inv_mat_non_zero, convert_mat_non_zero_to_inv_mat
 from .model_me import ModelME, LayerPrecToCovMat
 
 import tensorflow as tf
@@ -51,7 +52,7 @@ class ResultsME:
     init_prec_mat_non_zero : np.array
     init_cov_mat_reconstructed_non_zero : np.array
     learned_prec_mat_non_zero : np.array
-    learned_cov_mat_non_zero : np.array
+    learned_cov_mat : np.array
 
     @property
     def learned_prec_mat(self) -> np.array:
@@ -62,11 +63,11 @@ class ResultsME:
             )
 
     @property
-    def learned_cov_mat(self) -> np.array:
-        return convert_mat_non_zero_to_mat(
+    def learned_cov_mat_non_zero(self) -> np.array:
+        return convert_mat_to_mat_non_zero(
             n=self.inputs.n,
             non_zero_idx_pairs=self.inputs.non_zero_idx_pairs,
-            mat_non_zero=self.learned_cov_mat_non_zero
+            mat=self.learned_cov_mat
             )
 
     def report(self):
@@ -153,7 +154,11 @@ def solve_me(inputs: InputsME) -> ResultsME:
 
     # Return solution & model
     learned_prec_mat_non_zero = model.inv_lyr.non_zero_vals.numpy()
-    learned_cov_mat_non_zero = inputs.convert_mat_non_zero_to_inv_mat_non_zero(learned_prec_mat_non_zero)
+    learned_cov_mat = convert_mat_non_zero_to_inv_mat(
+        n=inputs.n,
+        non_zero_idx_pairs=inputs.non_zero_idx_pairs,
+        mat_non_zero=learned_prec_mat_non_zero
+        )
 
     return ResultsME(
         inputs=inputs,
@@ -161,5 +166,5 @@ def solve_me(inputs: InputsME) -> ResultsME:
         init_prec_mat_non_zero=init_prec_mat_non_zero,
         init_cov_mat_reconstructed_non_zero=init_cov_mat_reconstructed_non_zero,
         learned_prec_mat_non_zero=learned_prec_mat_non_zero,
-        learned_cov_mat_non_zero=learned_cov_mat_non_zero
+        learned_cov_mat=learned_cov_mat
         )
