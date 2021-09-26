@@ -1,9 +1,7 @@
 from helpers_test import assert_equal_arrs, save_load_layer, save_load_model
-from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, \
-    convert_mat_to_mat_non_zero, ModelME, random_non_zero_idx_pairs, random_cov_mat
+from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, ModelME
 
 import numpy as np
-import tensorflow as tf
 
 class TestME:
 
@@ -63,52 +61,4 @@ class TestME:
         
         results = solve_me(inputs)
 
-        results.report()
-
-    def test_me_n6(self):
-
-        n = 6
-        
-        # Non zero elements
-        non_zero_idx_pairs = random_non_zero_idx_pairs(n)
-
-        # Cov mat
-        cov_mat = random_cov_mat(n)
-        cov_mat_non_zero = convert_mat_to_mat_non_zero(n,non_zero_idx_pairs,cov_mat)
-
-        inputs = InputsME(
-            n=n,
-            non_zero_idx_pairs=non_zero_idx_pairs,
-            target_cov_mat_non_zero=cov_mat_non_zero,
-            epochs=100,
-            learning_rate=0.01,
-            use_weighted_loss=False
-            )
-        inputs.report()
-        
-        results = solve_me(inputs)
-        results.report()
-
-    def test_me_weighted_n6(self):
-
-        n = 6
-
-        # Non zero elements
-        non_zero_idx_pairs = random_non_zero_idx_pairs(n)
-
-        # Cov mat
-        cov_mat = random_cov_mat(n)
-        cov_mat_non_zero = convert_mat_to_mat_non_zero(n,non_zero_idx_pairs,cov_mat)
-
-        inputs = InputsME(
-            n=n,
-            non_zero_idx_pairs=non_zero_idx_pairs,
-            target_cov_mat_non_zero=cov_mat_non_zero,
-            epochs=100,
-            learning_rate=0.01,
-            use_weighted_loss=True
-            )
-        inputs.report()
-
-        results = solve_me(inputs)
         results.report()

@@ -1,9 +1,7 @@
 from helpers_test import assert_equal_arrs, save_load_layer, save_load_model
-from tfConstrainedGauss import InputsID, solve_id, LayerMultPrecCov, \
-    ModelID, random_non_zero_idx_pairs, random_cov_mat
+from tfConstrainedGauss import InputsID, solve_id, LayerMultPrecCov, ModelID
 
 import numpy as np
-import tensorflow as tf
 
 class TestID:
 
@@ -71,27 +69,6 @@ class TestID:
                 [5.0,20.0,4.0],
                 [2.0,4.0,30.0]
                 ]),
-            epochs=100,
-            learning_rate=0.001
-            )
-        inputs.report()
-
-        results = solve_id(inputs)
-        results.report()
-
-        identity_check = np.dot(results.learned_prec_mat,results.learned_cov_mat)
-        assert_equal_arrs(identity_check, np.eye(inputs.n))
-
-    def test_id_n6(self):
-
-        n = 6
-        non_zero_idx_pairs = random_non_zero_idx_pairs(n)
-        cov_mat = random_cov_mat(n)
-
-        inputs = InputsID(
-            n=n,
-            non_zero_idx_pairs=non_zero_idx_pairs,
-            target_cov_mat=cov_mat,
             epochs=100,
             learning_rate=0.001
             )
