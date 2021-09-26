@@ -119,32 +119,86 @@ Needed for checking equality with &#64;dataclass(eq=False) decorator</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.check_non_zero_idx_pairs">
 <span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">check_non_zero_idx_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.helpers.check_non_zero_idx_pairs" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Check list of non-zero index pairs is valid, i.e. lower triangular and that all diagonal elements are given</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matrix
+non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix</p>
+</dd>
+<dt>Raises:</dt><dd><p>ValueError: If not all diagonal elements are specified
+ValueError: If some indices are not lower-triangular</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.check_symmetric">
-<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">check_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.helpers.check_symmetric" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">check_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-08</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.check_symmetric" title="Permalink to this definition"></a></dt>
+<dd><p>Check a matrix is symmetric</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>a ([type]): Matrix
+rtol ([type], optional): Tol. Defaults to 1e-05.
+atol ([type], optional): Tol. Defaults to 1e-08.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True if symmetric</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.convert_mat_non_zero_to_inv_mat">
-<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_inv_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_non_zero_to_inv_mat" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_inv_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_non_zero_to_inv_mat" title="Permalink to this definition"></a></dt>
+<dd><p>Convert list of matrice’s non-zero elements into the matrice’s inverse</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matrix
+non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+mat_non_zero (np.array): Corresponding non-zero matrix elements</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.array: Inverse of the nxn matrix</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.convert_mat_non_zero_to_inv_mat_non_zero">
-<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_inv_mat_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_non_zero_to_inv_mat_non_zero" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_inv_mat_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_non_zero_to_inv_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd><p>Convert list of matrice’s non-zero elements into the matrice’s inverse’s list of elements</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matrix
+non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+mat_non_zero (np.array): Corresponding non-zero matrix elements</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.array: List of elements corresponding to indices non_zero_idx_pairs in the inverse of the matrix which has non-zero elements given by mat_non_zero</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.convert_mat_non_zero_to_mat">
-<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_non_zero_to_mat" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_non_zero_to_mat" title="Permalink to this definition"></a></dt>
+<dd><p>Convert list of matrice’s non-zero elements into the matrix</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matrix
+non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+mat_non_zero (np.array): Corresponding non-zero matrix elements</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.array: nxn matrix with specified non-zero elements</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.convert_mat_to_mat_non_zero">
-<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_to_mat_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_to_mat_non_zero" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">convert_mat_to_mat_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.convert_mat_to_mat_non_zero" title="Permalink to this definition"></a></dt>
+<dd><p>Convert a matrix to it’s list of non-zero elements for specified non-zero indices</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matrix
+non_zero_idx_pairs (List[Tuple[int,int]]): List of non-zero index pairs in the matrix
+mat_non_zero (np.array): nxn matrix</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.array: List of elements specified by non_zero_idx_pairs</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.convert_np_to_pd">
@@ -185,12 +239,27 @@ Needed for checking equality with &#64;dataclass(eq=False) decorator</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.random_cov_mat">
 <span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">random_cov_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">numpy.array</span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.random_cov_mat" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generate a random covariance matrix using Cholesky decomposition</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matrix</p>
+</dd>
+<dt>Returns:</dt><dd><p>np.array: Covariance matrix = L.L^T where L is a lower triangular matrix</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.helpers.random_non_zero_idx_pairs">
 <span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.helpers.</span></span><span class="sig-name descname"><span class="pre">random_non_zero_idx_pairs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#tfConstrainedGauss.helpers.random_non_zero_idx_pairs" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generate a random list of non-zero index pairs. The number of index pairs is less than n choose 2 (max).
+The indices are lower triangular.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of the matrix</p>
+</dd>
+<dt>Returns:</dt><dd><p>List[Tuple[int,int]]: List of index pairs in the lower triangular matrix.</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-tfConstrainedGauss.net_common">
