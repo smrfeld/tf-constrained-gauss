@@ -1,6 +1,6 @@
 # tfConstrainedGauss: TensorFlow package for estimating constrained precision matrices
 
-[![docs](https://github.com/smrfeld/tf-constrained-gauss/actions/workflows/docs.yml/badge.svg)](https://github.com/smrfeld/tf-constrained-gauss/actions/workflows/docs.yml)
+[![docs](https://github.com/smrfeld/tf-constrained-gauss/actions/workflows/tests_and_docs.yml/badge.svg)](https://github.com/smrfeld/tf-constrained-gauss/actions/workflows/tests_and_docs.yml)
 
 This is the source repo. for the `tfConstrainedGauss` Python package. It is a TensorFlow package for finding the interactions in a Gaussian graphical model with given and fixed structure from constraints on the precision matrix.
 
