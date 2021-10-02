@@ -5,8 +5,8 @@ on:
     - main
 
 jobs:
-  docs:
-    name: Docs
+  tests_and_docs:
+    name: Tests and Docs
     runs-on: ubuntu-latest
     steps:
 
