@@ -73,11 +73,23 @@ P = (
     0   p23 p33
 )
 ```
-(note that the diagonal elements are always non-zero), the goal is to find the elements of the precision matrix by:
+(note that the diagonal elements are always non-zero).
+
+Example: 
+
+<img src="examples/figures/n8_id_constraints.png" alt="drawing" width="800"/>
+
+The goal is to find the elements of the precision matrix by:
 ```
 P* = argmin | P.C - I|
 ```
 where `I` is the identity.
+
+Example:
+
+<img src="examples/figures/n8_id_cov.png" alt="drawing" width="800"/>
+
+<img src="examples/figures/n8_id_prec.png" alt="drawing" width="400"/>
 
 The advantage of this approach is that it does not require calculating the inverse of any matrix, particularly important for large `n`.
 
