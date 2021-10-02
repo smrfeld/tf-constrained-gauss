@@ -12,7 +12,7 @@ def check_symmetric(a, rtol=1e-05, atol=1e-08):
 class TestME:
 
     def test_random_realistic_cov_mat(self):
-        cov_mat = random_realistic_cov_mat(n=5)
+        cov_mat = random_realistic_cov_mat(n=5, unit_diag=True)
         print(cov_mat)
 
         assert(is_pos_def(cov_mat))

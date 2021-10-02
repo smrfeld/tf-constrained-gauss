@@ -48,13 +48,18 @@ def random_cov_mat(n: int) -> np.array:
 
 # Random realistic cov mat following Madar 2015 
 # Stat Probab Lett. 2015 August 1; 103: 142–147. doi:10.1016/j.spl.2015.03.014.
-def random_realistic_cov_mat(n: int) -> np.array:
+def random_realistic_cov_mat(n: int, unit_diag: bool, diag_scale_std_dev: float = 0.1) -> np.array:
     """Generate a random realistic covariance matrix following
     Madar 2015
     Stat Probab Lett. 2015 August 1; 103: 142–147. doi:10.1016/j.spl.2015.03.014.
 
     Args:
         n (int): Size of matrix
+        unit_diag (bool): Whether the diagonal should be all 1 (True), otherwise the diagonal is scaled as 
+            described by diag_scale_std_dev
+        diag_scale_std_dev (float): If unit_diag is False, a scaling matrix is constructed as 
+            A = diag(randomNormal(mean=1, std_dev=diag_scale_std_dev)). The covariance matrix is transformed as A.cov.Transpose[A]
+            corresponding to scaling the data matrix Z by A.Z. Default = 0.1.
 
     Returns:
         np.array: Covariance matrix
@@ -102,7 +107,24 @@ def random_realistic_cov_mat(n: int) -> np.array:
             l[j,i] *= pow(-1,bij)
     
     # Step 4
-    return np.dot(l, np.transpose(l))
+    cov_mat = np.dot(l, np.transpose(l))
+
+    # Scaling (optional)
+    if not unit_diag:
+
+        # Scaling matrix
+        a_diag = np.random.normal(
+            loc=1.0, 
+            scale=diag_scale_std_dev, 
+            size=n
+            )
+        a = np.diag(a_diag)
+
+        # Scale data matrix z linearly by a.z
+        # Covariance scales by cov(a.z) = a.cov(z).transpose(a)
+        cov_mat = np.dot(a, np.dot(cov_mat, np.transpose(a)))
+
+    return cov_mat
 
 def check_symmetric(a, rtol=1e-05, atol=1e-08) -> bool:
     """Check a matrix is symmetric

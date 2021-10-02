@@ -130,6 +130,46 @@ w_{ij} = c_{ij}^{-2}
 \end{equation}
 %---------------
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Extra: linear transformations for covariance \& precision matrices}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+How does a linear transformation affect covariance and precision matrices?
+
+Consider an $n_\text{dim} \times n_\text{samples}$ data matrix $Z$, where $n_\text{dim}$ is the dimensionality of the data and $n_\text{samples}$ the number of samples. If the covariance matrix is:
+%---------------
+\begin{equation}
+\text{cov}(Z)
+\end{equation}
+%---------------
+then following a linear transformation $A$ the covariance matrix is:
+%---------------
+\begin{equation}
+\text{cov}(AZ) = A \, \text{cov}(Z) A^\intercal
+\end{equation}
+%---------------
+If the precision matrix is:
+%---------------
+\begin{equation}
+\text{prec}(Z) = ( \text{cov}(Z) )^{-1}
+\end{equation}
+%---------------
+then following a linear transformation $A$ the precision matrix is:
+%---------------
+\begin{equation}
+\text{prec}(Z) = ( \text{cov}(AZ) )^{-1} = ( A \, \text{cov}(Z) A^\intercal )^{-1} = A^{-\intercal} \text{prec}(Z) A^{-1}
+\end{equation}
+%---------------
+
+
 \end{document}
+
+
+
+
 
 
