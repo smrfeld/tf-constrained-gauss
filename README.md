@@ -99,6 +99,9 @@ c11, c12, c22, c23, c33
 ```
 the goal is to find the elements of `P`. In other words, every unique element `(i,j)` of the `n x n` symmetric matrix has a given constraint, either to a value in the covariance matrix, or a zero entry in the precision matrix.
 
+Example:
+<img src="examples/figures/n8_me_constraints.png" alt="drawing" width="800"/>
+
 This is a maximum entropy (MaxEnt) setup. The elements of the precision matrix `pij` are directly the interactions in the Gaussian graphical model; the moments they control in a MaxEnt sense are the covariances `cij`.
 
 The problem can be solved in a number of ways, for example using Boltzmann machine learning, where we minimize:
@@ -113,6 +116,11 @@ In TensorFlow, we minimize the MSE loss for the individual terms, which results 
 ```
 P* = argmin \sum_{ij} || cij - (P^{-1})_{ij} ||_2
 ```
+
+Example:
+<img src="examples/figures/n8_me_cov.png" alt="drawing" width="800"/>
+
+<img src="examples/figures/n8_me_cov_full.png" alt="drawing" width="800"/>
 
 To learn each element of the covariance matrix with equal importance, we can use a weighted MSE loss:
 ```

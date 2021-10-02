@@ -102,6 +102,14 @@ class ResultsID:
 def solve_id(
     inputs: InputsID
     ) -> ResultsID:
+    """Solve the identity proble
+
+    Args:
+        inputs (InputsID): Inputs
+
+    Returns:
+        ResultsID: Results
+    """
 
     assert(inputs.target_cov_mat.shape == (inputs.n,inputs.n))
     assert(check_symmetric(inputs.target_cov_mat))

@@ -10,6 +10,9 @@ from typing import List, Tuple
 
 @dataclass
 class InputsME:
+    """Inputs to the MaxEnt problem
+    """
+
     n : int
     non_zero_idx_pairs: List[Tuple[int,int]]
     target_cov_mat_non_zero : np.array
@@ -17,7 +20,11 @@ class InputsME:
     learning_rate: float = 0.01
     use_weighted_loss : bool = False
 
+    verbose : bool = False
+
     def convert_mat_non_zero_to_inv_mat_non_zero(self, mat_non_zero: np.array):
+        """Wrapper around convert_mat_non_zero_to_inv_mat_non_zero
+        """
         return convert_mat_non_zero_to_inv_mat_non_zero(
             n=self.n,
             non_zero_idx_pairs=self.non_zero_idx_pairs,
@@ -26,9 +33,16 @@ class InputsME:
     
     @property
     def n_non_zero(self):
+        """The number of unique non-zero elements in the precision matrix (excluding symmetry)
+
+        Returns:
+            int: Count
+        """
         return len(self.non_zero_idx_pairs)
 
     def report(self):
+        """Print some information
+        """
         print("----- Inputs -----")
 
         print("Constraints on the prec mat: non-zero elements are:")
@@ -46,6 +60,8 @@ class InputsME:
 
 @dataclass
 class ResultsME:
+    """Results of the MaxEnt problem
+    """
     inputs: InputsME
     trained_model : ModelME
 
@@ -71,6 +87,8 @@ class ResultsME:
             )
 
     def report(self):
+        """Print some information
+        """
         print("----- Results -----")
 
         print("Prec mat initial guess for non-zero elements:")
@@ -98,15 +116,25 @@ def custom_weighted_mse(class_weights):
     return weighted_mse
 
 def solve_me(inputs: InputsME) -> ResultsME:
+    """Solve the MaxEnt problem
+
+    Args:
+        inputs (InputsME): Inputs
+
+    Returns:
+        ResultsME: Results
+    """
 
     assert(inputs.target_cov_mat_non_zero.shape == (len(inputs.non_zero_idx_pairs),))
 
     # Invert cov mat to get initial guess for precision matrix
     init_prec_mat_non_zero = inputs.convert_mat_non_zero_to_inv_mat_non_zero(inputs.target_cov_mat_non_zero)
-    print("Prec mat initial guess for non-zero elements", init_prec_mat_non_zero)
+    if inputs.verbose:
+        print("Prec mat initial guess for non-zero elements", init_prec_mat_non_zero)
 
     init_cov_mat_reconstructed_non_zero = inputs.convert_mat_non_zero_to_inv_mat_non_zero(init_prec_mat_non_zero)
-    print("Initial cov mat corresponding non-zero elements", init_cov_mat_reconstructed_non_zero)
+    if inputs.verbose:
+        print("Initial cov mat corresponding non-zero elements", init_cov_mat_reconstructed_non_zero)
 
     # Make layer and model
     lyr = LayerPrecToCovMat(
@@ -121,7 +149,8 @@ def solve_me(inputs: InputsME) -> ResultsME:
     if inputs.use_weighted_loss:
         weights_loss = 1.0 / pow(inputs.target_cov_mat_non_zero,2)
         weights_loss = weights_loss.astype('float32')
-        print("Using weighted loss functing with weights:", weights_loss)
+        if inputs.verbose:
+            print("Using weighted loss functing with weights:", weights_loss)
         loss_fn = custom_weighted_mse(weights_loss)
     else:
         loss_fn = tf.keras.losses.MeanSquaredError()

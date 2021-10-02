@@ -1,5 +1,5 @@
 from helpers_test import assert_equal_arrs, save_load_layer, save_load_model
-from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, ModelME, random_realistic_cov_mat
+from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, ModelME, random_cov_mat
 
 import numpy as np
 
@@ -11,8 +11,8 @@ def check_symmetric(a, rtol=1e-05, atol=1e-08):
 
 class TestME:
 
-    def test_random_realistic_cov_mat(self):
-        cov_mat = random_realistic_cov_mat(n=5, unit_diag=True)
+    def test_random_cov_mat(self):
+        cov_mat = random_cov_mat(n=5, unit_diag=True)
         print(cov_mat)
 
         assert(is_pos_def(cov_mat))

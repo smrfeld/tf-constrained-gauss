@@ -13,15 +13,19 @@ def random_non_zero_idx_pairs(n: int) -> List[Tuple[int,int]]:
     Returns:
         List[Tuple[int,int]]: List of index pairs in the lower triangular matrix.
     """
+    
     # Non zero elements
     non_zero_idx_pairs = []
+    
     # All diagonal (required)
     for i in range(0,n):
         non_zero_idx_pairs.append((i,i))
+    
     # Some off diagonal < n choose 2
     max_no_off_diagonal = int((n-1)*n/2)
     no_off_diagonal = np.random.randint(low=0,high=max_no_off_diagonal)
     print("No non-zero off-diagonal elements:",no_off_diagonal,"max possible:",max_no_off_diagonal)
+    
     idx = 0
     while idx < no_off_diagonal:
         i = np.random.randint(low=1,high=n)
@@ -32,23 +36,9 @@ def random_non_zero_idx_pairs(n: int) -> List[Tuple[int,int]]:
 
     return non_zero_idx_pairs
 
-# Random cov mat using chol decomposition
-# Diagonal = positive => unique
-def random_cov_mat(n: int) -> np.array:
-    """Generate a random covariance matrix using Cholesky decomposition
-
-    Args:
-        n (int): Size of matrix
-
-    Returns:
-        np.array: Covariance matrix = L.L^T where L is a lower triangular matrix
-    """
-    chol = np.tril(np.random.rand(n,n))
-    return np.dot(chol,np.transpose(chol))
-
 # Random realistic cov mat following Madar 2015 
 # Stat Probab Lett. 2015 August 1; 103: 142–147. doi:10.1016/j.spl.2015.03.014.
-def random_realistic_cov_mat(n: int, unit_diag: bool, diag_scale_std_dev: float = 0.1) -> np.array:
+def random_cov_mat(n: int, unit_diag: bool, diag_scale_std_dev: float = 0.1) -> np.array:
     """Generate a random realistic covariance matrix following
     Madar 2015
     Stat Probab Lett. 2015 August 1; 103: 142–147. doi:10.1016/j.spl.2015.03.014.

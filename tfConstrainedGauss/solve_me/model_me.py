@@ -8,6 +8,8 @@ from typing import List, Tuple
 
 @tf.keras.utils.register_keras_serializable(package="tfConstrainedGauss")
 class LayerPrecToCovMat(tf.keras.layers.Layer):
+    """Layer that converts precision to covariance matrix
+    """
 
     @classmethod
     def constructDiag(cls,
@@ -16,6 +18,16 @@ class LayerPrecToCovMat(tf.keras.layers.Layer):
         init_diag_val: float = 1.0,
         **kwargs
         ):
+        """Constructor with initial precision matrix that is diagonsl
+
+        Args:
+            n (int): Size of matirx
+            non_zero_idx_pairs (List[Tuple[int,int]]): List of lower triangular index pairs for non-zero elements in precision matrix
+            init_diag_val (float, optional): Initial diagonal value of precision matrix. Defaults to 1.0.
+
+        Returns:
+            LayerPrecToCovMat: layer
+        """
         check_non_zero_idx_pairs(n, non_zero_idx_pairs)
 
         # Set all diagonal elements to one, rest zero (like a identity matrix)
@@ -37,6 +49,13 @@ class LayerPrecToCovMat(tf.keras.layers.Layer):
         non_zero_vals: np.array,
         **kwargs
         ):
+        """Constructor
+
+        Args:
+            n (int): Size of matirx
+            non_zero_idx_pairs (List[Tuple[int,int]]): List of lower triangular index pairs for non-zero elements in precision matrix
+            non_zero_vals (np.array): Non-zero values corresponding to non_zero_idx_pairs
+        """
         super(LayerPrecToCovMat, self).__init__(**kwargs)
 
         check_non_zero_idx_pairs(n, non_zero_idx_pairs)
@@ -54,6 +73,11 @@ class LayerPrecToCovMat(tf.keras.layers.Layer):
 
     @property
     def n_non_zero(self):
+        """Number of non-zero unique elements in precision matrix (excluding symmetry)
+
+        Returns:
+            int: Count
+        """
         return len(self.non_zero_idx_pairs)
 
     def get_config(self):
@@ -70,7 +94,14 @@ class LayerPrecToCovMat(tf.keras.layers.Layer):
         return cls(**config)
 
     def call(self, inputs):
-        
+        """Construct the full precision matrix from the non-zero values and invert it to return the covariance matrix
+
+        Args:
+            inputs ([type]): Anything; used only to determine batch size: size should be batch_size x whatever
+
+        Returns:
+            [type]: Covariance matrix: batch_size x n x n
+        """
         # Form precision matrix
         batch_size = tf.shape(inputs)[0]
         prec_mat = tf.zeros((batch_size,self.n,self.n), dtype='float32')
@@ -85,11 +116,18 @@ class LayerPrecToCovMat(tf.keras.layers.Layer):
 
 @tf.keras.utils.register_keras_serializable(package="tfConstrainedGauss")
 class ModelME(tf.keras.Model):
+    """Model for the MaxEnt method
+    """
 
     def __init__(self, 
         inv_lyr: LayerPrecToCovMat,
         **kwargs
         ):
+        """Constructor
+
+        Args:
+            inv_lyr (LayerPrecToCovMat): Precision to covariance matrix layer
+        """
         super(ModelME, self).__init__(**kwargs)
 
         self.inv_lyr = inv_lyr
@@ -107,6 +145,16 @@ class ModelME(tf.keras.Model):
         return cls(**config)
 
     def call(self, input_tensor, training=False):
+        """Given some input_tensor that is only used to set the batch size (must be batch_size >= 2, else there are problems!)
+            Calls the precision matrix to covariance matrix layer and returns the vector of the elements in the covariance matrix
+            corresponding to the non-zero entries in the precision matrix.
+
+        Args:
+            input_tensor ([type]): Anything; used only to determine batch size: size should be batch_size x whatever
+
+        Returns:
+            [type]: Elements in the covariance matrix corresponding to the non-zero entries in the precision matrix.: batch_size x no_non_zero
+        """
         cov_mat = self.inv_lyr(input_tensor)
 
         batch_size = tf.shape(cov_mat)[0]

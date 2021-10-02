@@ -102,10 +102,10 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
         """Call the layer
 
         Args:
-            inputs ([type]): Covariance matrix
+            inputs ([type]): Covariance matrix: batch_size x n x n
 
         Returns:
-            [type]: Product of precision and covariance matrix
+            [type]: Product of precision and covariance matrix: vector of length batch_size
         """
         # Inputs = cov mat
 
@@ -118,6 +118,8 @@ class LayerMultPrecCov(tf.keras.layers.Layer):
 
 @tf.keras.utils.register_keras_serializable(package="tfConstrainedGauss")
 class ModelID(tf.keras.Model):
+    """Model for the Identidy method
+    """
 
     def __init__(self, 
         mult_lyr: LayerMultPrecCov,
@@ -140,4 +142,12 @@ class ModelID(tf.keras.Model):
         return cls(**config)
 
     def call(self, input_tensor, training=False):
+        """Wrapper to call the mulitplication layer of precision and covariance matrices
+        
+        Args:
+            input_tensor ([type]): Covariance matrix: batch_size x n x n
+
+        Returns:
+            [type]: Product of precision and covariance matrix: vector of length batch_size
+        """
         return self.mult_lyr(input_tensor)
