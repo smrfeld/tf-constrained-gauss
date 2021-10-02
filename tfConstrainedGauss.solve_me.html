@@ -92,25 +92,27 @@
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.model_me.</span></span><span class="sig-name descname"><span class="pre">LayerPrecToCovMat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tensorflow.python.keras.engine.base_layer.Layer</span></code></p>
+<p>Layer that converts precision to covariance matrix</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_vals</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matirx
+non_zero_idx_pairs (List[Tuple[int,int]]): List of lower triangular index pairs for non-zero elements in precision matrix
+non_zero_vals (np.array): Non-zero values corresponding to non_zero_idx_pairs</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.call" title="Permalink to this definition"></a></dt>
-<dd><p>This is where the layer’s logic lives.</p>
-<p>Note here that <cite>call()</cite> method in <cite>tf.keras</cite> is little bit different
-from <cite>keras</cite> API. In <cite>keras</cite> API, you can pass support masking for
-layers as additional arguments. Whereas <cite>tf.keras</cite> has <cite>compute_mask()</cite>
-method to support masking.</p>
+<dd><p>Construct the full precision matrix from the non-zero values and invert it to return the covariance matrix</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>inputs: Input tensor, or list/tuple of input tensors.
-<a href="#id1"><span class="problematic" id="id2">*</span></a>args: Additional positional arguments. Currently unused.
-<a href="#id3"><span class="problematic" id="id4">**</span></a>kwargs: Additional keyword arguments. Currently unused.</p>
+<dt>Args:</dt><dd><p>inputs ([type]): Anything; used only to determine batch size: size should be batch_size x whatever</p>
 </dd>
-<dt>Returns:</dt><dd><p>A tensor or list/tuple of tensors.</p>
+<dt>Returns:</dt><dd><p>[type]: Covariance matrix: batch_size x n x n</p>
 </dd>
 </dl>
 </dd></dl>
@@ -118,7 +120,16 @@ method to support masking.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.constructDiag">
 <em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">constructDiag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_diag_val</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.constructDiag" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Constructor with initial precision matrix that is diagonsl</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>n (int): Size of matirx
+non_zero_idx_pairs (List[Tuple[int,int]]): List of lower triangular index pairs for non-zero elements in precision matrix
+init_diag_val (float, optional): Initial diagonal value of precision matrix. Defaults to 1.0.</p>
+</dd>
+<dt>Returns:</dt><dd><p>LayerPrecToCovMat: layer</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.from_config">
@@ -148,7 +159,12 @@ if they want to modify it.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.n_non_zero">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_non_zero</span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat.n_non_zero" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Number of non-zero unique elements in precision matrix (excluding symmetry)</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: Count</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -156,35 +172,27 @@ if they want to modify it.</p>
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.model_me.</span></span><span class="sig-name descname"><span class="pre">ModelME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tensorflow.python.keras.engine.training.Model</span></code></p>
+<p>Model for the MaxEnt method</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inv_lyr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat" title="tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat"><span class="pre">tfConstrainedGauss.solve_me.model_me.LayerPrecToCovMat</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME.__init__" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Constructor</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>inv_lyr (LayerPrecToCovMat): Precision to covariance matrix layer</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.model_me.ModelME.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.model_me.ModelME.call" title="Permalink to this definition"></a></dt>
-<dd><p>Calls the model on new inputs.</p>
-<p>In this case <cite>call</cite> just reapplies
-all ops in the graph to the new inputs
-(e.g. build a new computational graph from the provided inputs).</p>
-<p>Note: This method should not be called directly. It is only meant to be
-overridden when subclassing <cite>tf.keras.Model</cite>.
-To call a model on an input, always use the <cite>__call__</cite> method,
-i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call</cite> method.</p>
-<dl>
-<dt>Args:</dt><dd><p>inputs: A tensor or list of tensors.
-training: Boolean or boolean scalar tensor, indicating whether to run</p>
-<blockquote>
-<div><p>the <cite>Network</cite> in training mode or inference mode.</p>
-</div></blockquote>
-<dl class="simple">
-<dt>mask: A mask or list of masks. A mask can be</dt><dd><p>either a tensor or None (no mask).</p>
+<dd><dl class="simple">
+<dt>Given some input_tensor that is only used to set the batch size (must be batch_size &gt;= 2, else there are problems!)</dt><dd><p>Calls the precision matrix to covariance matrix layer and returns the vector of the elements in the covariance matrix
+corresponding to the non-zero entries in the precision matrix.</p>
 </dd>
-</dl>
+<dt>Args:</dt><dd><p>input_tensor ([type]): Anything; used only to determine batch size: size should be batch_size x whatever</p>
 </dd>
-<dt>Returns:</dt><dd><p>A tensor if there is a single output, or
-a list of tensors if there are more than one outputs.</p>
+<dt>Returns:</dt><dd><p>[type]: Elements in the covariance matrix corresponding to the non-zero entries in the precision matrix.: batch_size x no_non_zero</p>
 </dd>
 </dl>
 </dd></dl>
@@ -221,17 +229,19 @@ if they want to modify it.</p>
 <span id="tfconstrainedgauss-solve-me-solve-me-module"></span><h2>tfConstrainedGauss.solve_me.solve_me module<a class="headerlink" href="#module-tfConstrainedGauss.solve_me.solve_me" title="Permalink to this headline"></a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">InputsME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">n:</span> <span class="pre">int,</span> <span class="pre">non_zero_idx_pairs:</span> <span class="pre">List[Tuple[int,</span> <span class="pre">int]],</span> <span class="pre">target_cov_mat_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;,</span> <span class="pre">epochs:</span> <span class="pre">int</span> <span class="pre">=</span> <span class="pre">100,</span> <span class="pre">learning_rate:</span> <span class="pre">float</span> <span class="pre">=</span> <span class="pre">0.01,</span> <span class="pre">use_weighted_loss:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">InputsME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_cov_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_weighted_loss</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Inputs to the MaxEnt problem</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_cov_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_weighted_loss</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.__init__" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">non_zero_idx_pairs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_cov_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">int</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learning_rate</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">float</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_weighted_loss</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">bool</span></span> <span class="o"><span class="pre">=</span></span> <span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.__init__" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.convert_mat_non_zero_to_inv_mat_non_zero">
 <span class="sig-name descname"><span class="pre">convert_mat_non_zero_to_inv_mat_non_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.convert_mat_non_zero_to_inv_mat_non_zero" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Wrapper around convert_mat_non_zero_to_inv_mat_non_zero</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.epochs">
@@ -251,7 +261,12 @@ if they want to modify it.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.n_non_zero">
 <em class="property"><span class="pre">property</span> </em><span class="sig-name descname"><span class="pre">n_non_zero</span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.n_non_zero" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>The number of unique non-zero elements in the precision matrix (excluding symmetry)</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: Count</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.non_zero_idx_pairs">
@@ -261,7 +276,8 @@ if they want to modify it.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.report">
 <span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.report" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Print some information</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.target_cov_mat_non_zero">
@@ -273,12 +289,18 @@ if they want to modify it.</p>
 <span class="sig-name descname"><span class="pre">use_weighted_loss</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.use_weighted_loss" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.InputsME.verbose">
+<span class="sig-name descname"><span class="pre">verbose</span></span><em class="property"><span class="pre">:</span> <span class="pre">bool</span></em><em class="property"> <span class="pre">=</span> <span class="pre">False</span></em><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.InputsME.verbose" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME">
-<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">ResultsME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">inputs:</span> <span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></em>, <em class="sig-param"><span class="pre">trained_model:</span> <span class="pre">tfConstrainedGauss.solve_me.model_me.ModelME</span></em>, <em class="sig-param"><span class="pre">init_prec_mat_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em>, <em class="sig-param"><span class="pre">init_cov_mat_reconstructed_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em>, <em class="sig-param"><span class="pre">learned_prec_mat_non_zero:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em>, <em class="sig-param"><span class="pre">learned_cov_mat:</span> <span class="pre">&lt;built-in</span> <span class="pre">function</span> <span class="pre">array&gt;</span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">ResultsME</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="tfConstrainedGauss.solve_me.solve_me.InputsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">trained_model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.model_me.ModelME" title="tfConstrainedGauss.solve_me.model_me.ModelME"><span class="pre">tfConstrainedGauss.solve_me.model_me.ModelME</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_prec_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_cov_mat_reconstructed_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learned_prec_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learned_cov_mat</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Results of the MaxEnt problem</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="tfConstrainedGauss.solve_me.solve_me.InputsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">trained_model</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.model_me.ModelME" title="tfConstrainedGauss.solve_me.model_me.ModelME"><span class="pre">tfConstrainedGauss.solve_me.model_me.ModelME</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_prec_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_cov_mat_reconstructed_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learned_prec_mat_non_zero</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">learned_cov_mat</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">numpy.array</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.__init__" title="Permalink to this definition"></a></dt>
@@ -322,7 +344,8 @@ if they want to modify it.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.report">
 <span class="sig-name descname"><span class="pre">report</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME.report" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Print some information</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.ResultsME.trained_model">
@@ -339,7 +362,14 @@ if they want to modify it.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_me.solve_me.solve_me">
 <span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_me.solve_me.</span></span><span class="sig-name descname"><span class="pre">solve_me</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.InputsME" title="tfConstrainedGauss.solve_me.solve_me.InputsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.InputsME</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tfConstrainedGauss.solve_me.solve_me.ResultsME" title="tfConstrainedGauss.solve_me.solve_me.ResultsME"><span class="pre">tfConstrainedGauss.solve_me.solve_me.ResultsME</span></a></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_me.solve_me.solve_me" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Solve the MaxEnt problem</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>inputs (InputsME): Inputs</p>
+</dd>
+<dt>Returns:</dt><dd><p>ResultsME: Results</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-tfConstrainedGauss.solve_me">

@@ -111,9 +111,9 @@ non_zero_vals (np.array): Non-zero values in the precision matrix corresponding 
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_id.model_id.LayerMultPrecCov.call" title="Permalink to this definition"></a></dt>
 <dd><p>Call the layer</p>
 <dl class="simple">
-<dt>Args:</dt><dd><p>inputs ([type]): Covariance matrix</p>
+<dt>Args:</dt><dd><p>inputs ([type]): Covariance matrix: batch_size x n x n</p>
 </dd>
-<dt>Returns:</dt><dd><p>[type]: Product of precision and covariance matrix</p>
+<dt>Returns:</dt><dd><p>[type]: Product of precision and covariance matrix: vector of length batch_size</p>
 </dd>
 </dl>
 </dd></dl>
@@ -160,6 +160,7 @@ init_diag_val (float, optional): Value of the diagonal part of precision matrix.
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_id.model_id.ModelID">
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_id.model_id.</span></span><span class="sig-name descname"><span class="pre">ModelID</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_id.model_id.ModelID" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tensorflow.python.keras.engine.training.Model</span></code></p>
+<p>Model for the Identidy method</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_id.model_id.ModelID.__init__">
 <span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mult_lyr</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_id.model_id.LayerMultPrecCov" title="tfConstrainedGauss.solve_id.model_id.LayerMultPrecCov"><span class="pre">tfConstrainedGauss.solve_id.model_id.LayerMultPrecCov</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_id.model_id.ModelID.__init__" title="Permalink to this definition"></a></dt>
@@ -168,27 +169,11 @@ init_diag_val (float, optional): Value of the diagonal part of precision matrix.
 <dl class="py method">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_id.model_id.ModelID.call">
 <span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_tensor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">training</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#tfConstrainedGauss.solve_id.model_id.ModelID.call" title="Permalink to this definition"></a></dt>
-<dd><p>Calls the model on new inputs.</p>
-<p>In this case <cite>call</cite> just reapplies
-all ops in the graph to the new inputs
-(e.g. build a new computational graph from the provided inputs).</p>
-<p>Note: This method should not be called directly. It is only meant to be
-overridden when subclassing <cite>tf.keras.Model</cite>.
-To call a model on an input, always use the <cite>__call__</cite> method,
-i.e. <cite>model(inputs)</cite>, which relies on the underlying <cite>call</cite> method.</p>
-<dl>
-<dt>Args:</dt><dd><p>inputs: A tensor or list of tensors.
-training: Boolean or boolean scalar tensor, indicating whether to run</p>
-<blockquote>
-<div><p>the <cite>Network</cite> in training mode or inference mode.</p>
-</div></blockquote>
+<dd><p>Wrapper to call the mulitplication layer of precision and covariance matrices</p>
 <dl class="simple">
-<dt>mask: A mask or list of masks. A mask can be</dt><dd><p>either a tensor or None (no mask).</p>
+<dt>Args:</dt><dd><p>input_tensor ([type]): Covariance matrix: batch_size x n x n</p>
 </dd>
-</dl>
-</dd>
-<dt>Returns:</dt><dd><p>A tensor if there is a single output, or
-a list of tensors if there are more than one outputs.</p>
+<dt>Returns:</dt><dd><p>[type]: Product of precision and covariance matrix: vector of length batch_size</p>
 </dd>
 </dl>
 </dd></dl>
@@ -338,7 +323,14 @@ if they want to modify it.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="tfConstrainedGauss.solve_id.solve_id.solve_id">
 <span class="sig-prename descclassname"><span class="pre">tfConstrainedGauss.solve_id.solve_id.</span></span><span class="sig-name descname"><span class="pre">solve_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><a class="reference internal" href="#tfConstrainedGauss.solve_id.solve_id.InputsID" title="tfConstrainedGauss.solve_id.solve_id.InputsID"><span class="pre">tfConstrainedGauss.solve_id.solve_id.InputsID</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#tfConstrainedGauss.solve_id.solve_id.ResultsID" title="tfConstrainedGauss.solve_id.solve_id.ResultsID"><span class="pre">tfConstrainedGauss.solve_id.solve_id.ResultsID</span></a></span></span><a class="headerlink" href="#tfConstrainedGauss.solve_id.solve_id.solve_id" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Solve the identity proble</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>inputs (InputsID): Inputs</p>
+</dd>
+<dt>Returns:</dt><dd><p>ResultsID: Results</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-tfConstrainedGauss.solve_id">
