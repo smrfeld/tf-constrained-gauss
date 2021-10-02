@@ -17,17 +17,29 @@ jobs:
       with:
         python-version: 3.8
 
+    - uses: actions/cache@v2
+      with:
+        path: ${{ env.pythonLocation }}
+        key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('dev-requirements.txt') }}
+
     - name: Install requirements
       run: |
+        pip3 install pytest
         pip3 install sphinx-rtd-theme
         pip3 install --upgrade myst-parser
         pip3 install -r requirements.txt
         python3 setup.py install
 
+    - name: Run tests
+      run: |
+        cd tests
+        pytest
+    
     - name: Build docs
       run: |
         cd docs
         make html
+    
     # https://github.com/peaceiris/actions-gh-pages
     - name: Deploy
       if: success()
