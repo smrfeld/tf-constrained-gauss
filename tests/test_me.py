@@ -1,9 +1,22 @@
 from helpers_test import assert_equal_arrs, save_load_layer, save_load_model
-from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, ModelME
+from tfConstrainedGauss import LayerPrecToCovMat, solve_me, InputsME, ModelME, random_realistic_cov_mat
 
 import numpy as np
 
+def is_pos_def(x):
+    return np.all(np.linalg.eigvals(x) > 0)
+
+def check_symmetric(a, rtol=1e-05, atol=1e-08):
+    return np.allclose(a, a.T, rtol=rtol, atol=atol)
+
 class TestME:
+
+    def test_random_realistic_cov_mat(self):
+        cov_mat = random_realistic_cov_mat(n=5)
+        print(cov_mat)
+
+        assert(is_pos_def(cov_mat))
+        assert(check_symmetric(cov_mat))
 
     def test_inv_prec_to_cov_mat(self):
 

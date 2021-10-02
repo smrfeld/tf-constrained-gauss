@@ -46,6 +46,64 @@ def random_cov_mat(n: int) -> np.array:
     chol = np.tril(np.random.rand(n,n))
     return np.dot(chol,np.transpose(chol))
 
+# Random realistic cov mat following Madar 2015 
+# Stat Probab Lett. 2015 August 1; 103: 142–147. doi:10.1016/j.spl.2015.03.014.
+def random_realistic_cov_mat(n: int) -> np.array:
+    """Generate a random realistic covariance matrix following
+    Madar 2015
+    Stat Probab Lett. 2015 August 1; 103: 142–147. doi:10.1016/j.spl.2015.03.014.
+
+    Args:
+        n (int): Size of matrix
+
+    Returns:
+        np.array: Covariance matrix
+    """
+    
+    # Step 1
+    u = np.random.rand(n)
+    
+    # Sort descending
+    u = -np.sort(-u)
+
+    l = np.zeros(shape=(n,n))
+    l[0,0] = 1.0
+    l[1,1] = np.sqrt(u[1])
+    for j in range(2,n):
+        l[j,j] = np.sqrt(u[j]/u[j-1])
+
+    # Step 2
+    um = np.zeros(shape=(n,n))
+    # Original idx: 2 to n-1 inclusive = 2 to n
+    # Zero idx: 1 to n
+    for j in range(1,n):
+        um[0,j] = 1.0
+        um[j,j] = pow(l[j,j],2)
+
+        # No additional random variables = j-2 (original)
+        # So j-1 in zero indexed version
+        if j-1 > 0:
+            # Random decreasing
+            um_extra = np.random.uniform(low=l[j,j],high=1.0,size=(j-1))
+            um_extra = - np.sort(-um_extra)
+
+            # Assign
+            um[1:j,j] = um_extra
+
+        # Original idx: 1 to j-1 inclusive = 1 to j
+        # Zero idx: 0 to j
+        for i in range(0,j):
+            l[j,i] = np.sqrt(um[i,j] - um[i+1,j])
+
+    # Step 3
+    for i in range(0,n):
+        for j in range(i+1,n):
+            bij = np.random.binomial(n=n,p=0.5)
+            l[j,i] *= pow(-1,bij)
+    
+    # Step 4
+    return np.dot(l, np.transpose(l))
+
 def check_symmetric(a, rtol=1e-05, atol=1e-08) -> bool:
     """Check a matrix is symmetric
 
